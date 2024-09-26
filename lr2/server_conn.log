@@ -1,0 +1,6 @@
+2024-09-26 14:23:50.802 - Server started
+2024-09-26 14:23:53.277 - Connected by ('127.0.0.1', 41514)
+2024-09-26 14:23:53.277 - Received data: b'some message'
+2024-09-26 14:23:54.279 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
+2024-09-26 14:23:56.280 - Received data: b''
+2024-09-26 14:23:56.280 - Client disconnected
