@@ -1,6 +1,31 @@
-2024-09-26 14:23:50.802 - Server started
-2024-09-26 14:23:53.277 - Connected by ('127.0.0.1', 41514)
-2024-09-26 14:23:53.277 - Received data: b'some message'
-2024-09-26 14:23:54.279 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
-2024-09-26 14:23:56.280 - Received data: b''
-2024-09-26 14:23:56.280 - Client disconnected
+2024-09-27 08:11:36.683 - Server started
+2024-09-27 08:11:53.972 - Connected by ('127.0.0.1', 42912)
+2024-09-27 08:11:53.972 - Received data: b'some message'
+2024-09-27 08:11:54.974 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
+2024-09-27 08:11:54.974 - Connected by ('127.0.0.1', 42918)
+2024-09-27 08:11:54.974 - Received data: b'some message'
+2024-09-27 08:11:55.976 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
+2024-09-27 08:11:55.976 - Connected by ('127.0.0.1', 42928)
+2024-09-27 08:11:55.976 - Received data: b'some message'
+2024-09-27 08:11:56.978 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
+2024-09-27 08:11:56.978 - Connected by ('127.0.0.1', 42934)
+2024-09-27 08:11:56.978 - Received data: b'some message'
+2024-09-27 08:11:57.980 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
+2024-09-27 08:11:57.981 - Connected by ('127.0.0.1', 42948)
+2024-09-27 08:11:57.981 - Received data: b'some message'
+2024-09-27 08:11:58.982 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
+2024-09-27 08:11:58.983 - Connected by ('127.0.0.1', 42962)
+2024-09-27 08:11:58.983 - Received data: b'some message'
+2024-09-27 08:11:59.984 - Sent data: Server created by Bair Dobylov M3O-207M. egassem emos
+2024-09-27 08:11:59.984 - Received data: b''
+2024-09-27 08:11:59.984 - Client disconnected
+2024-09-27 08:11:59.985 - Received data: b''
+2024-09-27 08:11:59.985 - Client disconnected
+2024-09-27 08:11:59.985 - Received data: b''
+2024-09-27 08:11:59.985 - Client disconnected
+2024-09-27 08:11:59.985 - Received data: b''
+2024-09-27 08:11:59.985 - Client disconnected
+2024-09-27 08:12:00.985 - Received data: b''
+2024-09-27 08:12:00.985 - Client disconnected
+2024-09-27 08:12:01.986 - Received data: b''
+2024-09-27 08:12:01.987 - Client disconnected
