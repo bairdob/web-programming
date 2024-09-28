@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .chat-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-container {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .message {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+
+    .sender-message {
+      background-color: #e0e0e0;
+      color: #000;
+      align-self: flex-start;
+    }
+
+    .receiver-message {
+      background-color: #4CAF50;
+      color: #fff;
+      align-self: flex-end;
+    }
+
+    .input-container {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    .input-container input {
+      flex-grow: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .input-container button {
+      padding: 8px 15px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+  <title>Chat</title>
+</head>
+
+<body>
+<div class="chat-container">
+  <div id="messageContainer" class="message-container">
+    {% for message in messages %}
+    <div class="message {% if message.username == 'current_user' %}sender-message{% else %}receiver-message{% endif %}">
+      <strong>{{ message.username }}:</strong> {{ message.message }}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="input-container">
+    <input id="messageInput" type="text" placeholder="Type your message...">
+    <button id="sendButton">Send</button>
+  </div>
+</div>
+
+<script>
+  const user1 = "user1"; // Константа с пользователем
+
+  document.getElementById('sendButton').addEventListener('click', async () => {
+    const messageContent = document.getElementById('messageInput').value;
+
+    if (messageContent.trim() === "") {
+      alert("Message cannot be empty!");
+      return;
+    }
+
+    const response = await fetch('/chat/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: messageContent,
+        username: user1 // Отправляем пользователя в запросе
+      })
+    });
+
+    if (response.ok) {
+      window.location.href = '/chat'; // Перенаправляем на страницу /chat
+    } else {
+      console.error('Error sending message:', response.statusText);
+    }
+  });
+</script>
+</body>
+
+</html>
