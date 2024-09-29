@@ -1,4 +1,8 @@
+import pytest
+from fastapi.testclient import TestClient
+
 import api_client
+from main import app
 
 
 def test_get_chat():
@@ -48,3 +52,26 @@ def test_send_three_messages():
     messages_after_add = api_client.get_messages()
 
     assert len(messages_before_add.json()) == len(messages_after_add.json()) - len(client_headers)
+
+
+@pytest.fixture
+def client():
+    return TestClient(app)
+
+
+def test_websocket(client):
+    message = {"username": "user1", "message": "message from user1"}
+    with client.websocket_connect("/chat/ws") as websocket:
+        websocket.send_json(message)
+        data = websocket.receive_json()
+        assert data == message
+
+
+def test_recieve_message(client):
+    message = {"username": "user1", "message": "message from user1"}
+    with client.websocket_connect("/chat/ws") as websocket:
+        websocket.send_json(message)
+
+        with client.websocket_connect("/chat/ws") as websocket:
+            data = websocket.receive_json()
+            assert data == message

@@ -82,40 +82,55 @@
     </div>
     {% endfor %}
   </div>
-  <div class="input-container">
-    <input id="messageInput" type="text" placeholder="Type your message...">
-    <button id="sendButton">Send</button>
-  </div>
+  <form id="chatForm">
+    <div class="input-container">
+      <input id="messageInput" type="text" placeholder="Type your message...">
+      <button id="sendButton" type="submit">Send</button>
+    </div>
+  </form>
 </div>
 
 <script>
-  const user1 = "user1"; // Константа с пользователем
+  const user1 = "user1";
+  const ws = new WebSocket("ws://localhost:8000/chat/ws");
 
-  document.getElementById('sendButton').addEventListener('click', async () => {
-    const messageContent = document.getElementById('messageInput').value;
+  ws.onmessage = function (event) {
+    const messageData = JSON.parse(event.data);
+    appendMessage(messageData.username, messageData.message);
+  };
 
-    if (messageContent.trim() === "") {
+  const chatForm = document.getElementById('chatForm');
+  const messageInput = document.getElementById('messageInput');
+  const messageContainer = document.getElementById('messageContainer');
+
+  chatForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const messageContent = messageInput.value.trim();
+
+    if (messageContent === "") {
       alert("Message cannot be empty!");
       return;
     }
 
-    const response = await fetch('/chat/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: messageContent,
-        username: user1 // Отправляем пользователя в запросе
-      })
-    });
+    const messageData = {username: user1, message: messageContent};
 
-    if (response.ok) {
-      window.location.href = '/chat'; // Перенаправляем на страницу /chat
-    } else {
-      console.error('Error sending message:', response.statusText);
-    }
+    ws.send(JSON.stringify(messageData));
+    messageInput.value = '';
   });
+
+  function appendMessage(username, message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    messageDiv.classList.add('receiver-message');
+
+    const strong = document.createElement('strong');
+    strong.textContent = `${username}: `;
+
+    messageDiv.appendChild(strong);
+    messageDiv.appendChild(document.createTextNode(message));
+    messageContainer.appendChild(messageDiv);
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  }
 </script>
 </body>
 
