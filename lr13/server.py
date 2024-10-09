@@ -2,7 +2,7 @@ import hashlib
 import socket
 
 from endpoints import *
-from request_handler import Request
+from request import Request
 from responses import JSONResponse
 from route import Route
 from settings import HOST, PORT
